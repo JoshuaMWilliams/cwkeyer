@@ -82,10 +82,10 @@ def word(w):
         else if w[i+1] == '-':
           #print('SLOW')
           setKeySpeed(wpm-1)
-        i = i + 2
+        i+=2
       else:
         code = chars[w[i]]	
-        i = i + 1
+        i+=1
     except KeyError:
           # FIXME: Use proper logging facility here
           print('Skipping unknown character %s' % c)
