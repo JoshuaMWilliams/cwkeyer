@@ -72,20 +72,28 @@ def dit():
   time.sleep(ditspeed)
 
 def word(w):
-  for c in w:
-      try:
-          code = chars[c]
-      except KeyError:
+  i = 0
+  while i <= w.length:
+    try:
+	  if w[i] == '*':
+	    if w[i+1] == '+':
+		  #print('SPEED')
+		  setKeySpeed(wpm+1)
+		else if w[i+1] == '-':
+		  #print('SLOW')
+		  setKeySpeed(wpm-1)
+	  else:
+        code = chars[w[i]]	
+    except KeyError:
           # FIXME: Use proper logging facility here
           print('Skipping unknown character %s' % c)
           continue
-
-      for dahdit in code:
-        if dahdit == '-':
-          dah()
-        else:
-          dit()
-      gap()
+    for dahdit in code:
+      if dahdit == '-':
+        dah()
+      else:
+        dit()
+    gap()
   wordgap()
 
 def paris():
@@ -120,10 +128,14 @@ else:
 if args.cutnums:
   chars.update(cut_nums)
 
-ditspeed = (1200.0 / float(args.wpm)) / 1000.0
-dahspeed = ditspeed * 3
-charspace = ditspeed * 1
-wordspace = ditspeed * 7
+def setKeySpeed(wpm):
+  ditspeed = (1200.0 / float(wpm)) / 1000.0
+  dahspeed = ditspeed * 3
+  charspace = ditspeed * 1
+  wordspace = ditspeed * 7
+
+wpm = args.wpm
+setKeySpeed(wpm)
 
 for w in args.text.upper().split():
    word(w)
