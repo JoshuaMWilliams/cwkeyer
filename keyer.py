@@ -85,7 +85,7 @@ def word(w):
         i = i + 2
       else:
         code = chars[w[i]]	
-        i = i ++
+        i = i + 1
     except KeyError:
           # FIXME: Use proper logging facility here
           print('Skipping unknown character %s' % c)
