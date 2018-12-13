@@ -75,15 +75,17 @@ def word(w):
   i = 0
   while i <= w.length:
     try:
-	  if w[i] == '*':
-	    if w[i+1] == '+':
-		  #print('SPEED')
-		  setKeySpeed(wpm+1)
-		else if w[i+1] == '-':
-		  #print('SLOW')
-		  setKeySpeed(wpm-1)
-	  else:
+      if w[i] == '*':
+        if w[i+1] == '+':
+	  #print('SPEED')
+	  setKeySpeed(wpm+1)
+        else if w[i+1] == '-':
+          #print('SLOW')
+          setKeySpeed(wpm-1)
+        i = i + 2
+      else:
         code = chars[w[i]]	
+        i = i++
     except KeyError:
           # FIXME: Use proper logging facility here
           print('Skipping unknown character %s' % c)
